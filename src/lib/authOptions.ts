@@ -3,6 +3,9 @@ import { jwtDecode, JwtPayload } from "jwt-decode";
 
 import Credentials from "next-auth/providers/credentials";
 
+interface CustomJwtPayload extends JwtPayload {
+  id: string
+}
 export const authOptions : NextAuthOptions={
     pages:{
         signIn: '/login',
@@ -22,7 +25,8 @@ export const authOptions : NextAuthOptions={
       })
       const data = await res.json()
   if(data.message =='success'){
- const decodedToken = jwtDecode<JwtPayload>(data.token)
+ const decodedToken = jwtDecode<CustomJwtPayload>(data.token)
+
  console.log(decodedToken ,'decodedTokenNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN')
  console.log(data)
  
