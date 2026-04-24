@@ -1,21 +1,22 @@
-import React from 'react'
 import ProducCardt from '@/components/commen/ProductCard'
 import { productI } from '@/types/product.types'
 import Link from 'next/link'
-import { FaBoxOpen } from "react-icons/fa6";
+import React from 'react'
+import { FaBoxOpen } from 'react-icons/fa'
 
-export default async function Product() {
- const response = await fetch('https://ecommerce.routemisr.com/api/v1/products', {
+export default async function Men() {
+   const response = await fetch('https://ecommerce.routemisr.com/api/v1/products', {
       method: 'Get'
     })
   
     const data = await response.json()
     const products: productI[] = data.data
-    console.log(products)
-
-
+    const men =  products.filter((pro)=>{
+      return pro.category._id ==='6439d5b90049ad0b52b90048'
+    })
+    
   return (
-     <main>
+    <>
      <div className="bg-linear-to-br from-primary-800 to-primary-500 text-white">
       <div className="container mx-auto px-4 py-10 sm:py-14">
         <nav className="flex items-center gap-2 text-sm text-white/70 mb-6 flex-wrap">
@@ -23,7 +24,7 @@ export default async function Product() {
             Home
           </Link>
           <span className="text-white/40">/</span>
-          <span className="text-white font-medium">All Products</span>
+          <span className="text-white font-medium">Men</span>
         </nav>
 
         <div className="flex items-center gap-5">
@@ -33,7 +34,7 @@ export default async function Product() {
 
           <div>
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              All Products
+             Men Products
             </h1>
             <p className="text-white/80 mt-1">
               Explore our complete product collection
@@ -48,32 +49,14 @@ export default async function Product() {
         </div>
       </div>
     </div>
-      <div className='container m-auto'>  
-      
-      
-      
-    
-
-    <div className=''>
-
-
-     <div className="grid gap-4 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 my-3 py-3">
-              {products.map((pro) => {
+    <div className='container m-auto'> <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 my-3 py-3">
+              {men.map((pro) => {
                 return (
                   <div key={pro.id} className="col-span-1">
                    <ProducCardt pro={pro}/>
                   </div>
                 )
               })}
-            </div>
-   </div>
-    
-    
-    
-    </div>
-  </main>
+            </div></div></>
   )
 }
-
-
-

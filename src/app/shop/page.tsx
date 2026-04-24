@@ -1,21 +1,19 @@
-import React from 'react'
 import ProducCardt from '@/components/commen/ProductCard'
 import { productI } from '@/types/product.types'
 import Link from 'next/link'
+import React from 'react'
 import { FaBoxOpen } from "react-icons/fa6";
 
-export default async function Product() {
- const response = await fetch('https://ecommerce.routemisr.com/api/v1/products', {
+export default async  function Shop() {
+  const response = await fetch('https://ecommerce.routemisr.com/api/v1/products', {
       method: 'Get'
     })
   
     const data = await response.json()
     const products: productI[] = data.data
     console.log(products)
-
-
   return (
-     <main>
+  <main>
      <div className="bg-linear-to-br from-primary-800 to-primary-500 text-white">
       <div className="container mx-auto px-4 py-10 sm:py-14">
         <nav className="flex items-center gap-2 text-sm text-white/70 mb-6 flex-wrap">
@@ -74,6 +72,3 @@ export default async function Product() {
   </main>
   )
 }
-
-
-
